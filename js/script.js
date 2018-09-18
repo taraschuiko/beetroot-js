@@ -35,7 +35,6 @@
 			product.price = parseInt(prices.item(i).firstElementChild.innerHTML);
 			productsCurrent.push(product);
 		}
-		console.log(productsCurrent);
 		return productsCurrent;
 	}
 
@@ -129,7 +128,7 @@
 
 	// Price filtering
 	document.getElementById("price_select").addEventListener("change", filterPrice);
-	
+
 	function filterPrice(event) {
 		var selectedPrice = document.getElementById("price_select").value;
 		var productsBox;
@@ -183,5 +182,31 @@
 			}
 		}
 	}
+
+	// Checkout
+	document.getElementsByClassName("btn-check")[0].addEventListener("click", function() {
+		document.getElementsByClassName("checkout-window")[0].classList.remove("checkout-hidden");
+	});
+
+	document.getElementsByClassName("fade")[0].addEventListener("click", function() {
+		document.getElementsByClassName("checkout-window")[0].classList.add("checkout-hidden");
+	});
+
+	document.getElementById("checkout-btn").addEventListener("click", function() {
+		var name = document.getElementById("checkout-name").value;
+		var email = document.getElementById("checkout-email").value;
+		if (name == "" || email == "") {
+			alert("Заполните имя и email");
+		} else {
+			alert("Спасибо за покупку");
+			numberOfGoodsCount = 0;
+			sumOfGoodsCount = 0;
+			numberOfGoods.innerHTML = numberOfGoodsCount;
+			sumOfGoods.innerHTML = sumOfGoodsCount;
+			document.getElementsByClassName("checkout-window")[0].classList.add("checkout-hidden");
+			document.getElementById("checkout-name").value = "";
+			document.getElementById("checkout-email").value = "";
+		}
+	});
 
 })();
